@@ -1,64 +1,84 @@
-// import TaskItem from './components/domains/task/TaskItem/TaskItem';
-import NewTask from './components/domains/task/TaskItem/NewTask';
-import TaskList from './components/domains/task/TaskList/TaskList';
+import { Routes, Route, Link } from 'react-router';
 import { useState } from 'react';
-
+import TaskList from './components/domains/task/TaskList/TaskList';
+import NewTask from './pages/NewTask';
+import './App.css';
 function App() {
   const [taskInform, setTaskInform] = useState([
     {
       id: 1,
-      ProjectName: 'Re-work UI/UX',
-      Priority: 'low',
-      DueDate: '12/05/2025',
-      Assignee: 'Said & Rachel',
-      Project: 'Time App',
+      projectName: 'Re-work UI/UX',
+      priority: 'low',
+      dueDate: '12/05/2025',
+      assignee: 'Said & Rachel',
+      project: 'Time App',
     },
     {
       id: 2,
-      ProjectName: 'Dark mode toggle',
-      Priority: 'high',
-      DueDate: '09/03/2025',
-      Assignee: 'Umair & Precious',
-      Project: 'Asa Dark-mode Feature',
+      projectName: 'Dark mode toggle',
+      priority: 'high',
+      dueDate: '09/03/2025',
+      assignee: 'Umair & Precious',
+      project: 'Asa Dark-mode Feature',
     },
     {
       id: 3,
-      ProjectName: 'Accessibility check',
-      Priority: 'medium',
-      DueDate: '15/04/2025',
-      Assignee: 'Michel & Ricardo',
-      Project: 'Timer App',
+      projectName: 'Accessibility check',
+      priority: 'medium',
+      dueDate: '15/04/2025',
+      assignee: 'Michel & Ricardo',
+      project: 'Timer App',
     },
     {
       id: 4,
-      ProjectName: 'Notification Integration',
-      Priority: 'high',
-      DueDate: '11/03/2025',
-      Assignee: 'Ebetsam & Deborah',
-      Project: 'Timer App',
+      projectName: 'Notification Integration',
+      priority: 'high',
+      dueDate: '11/03/2025',
+      assignee: 'Ebetsam & Deborah',
+      project: 'Timer App',
     },
   ]);
-  function newTaskList(event, ProjectName, Project, Assignee) {
+  function newTaskList(event, projectName, project, assignee) {
     event.preventDefault();
     setTaskInform((prevtask) => [
       ...prevtask,
       {
         id: 5,
-        ProjectName,
-        DueDate: new Date().toLocaleDateString(),
-        Project,
-        Assignee,
-        Priority: 'high',
+        projectName,
+        dueDate: new Date().toLocaleDateString(),
+        project,
+        assignee,
+        priority: 'high',
       },
     ]);
   }
   return (
     <>
-      <h1>Task Manager</h1>
-      {/* <TaskItem /> */}
+      <div className="Container">
+        <div className="link-container">
+          <div>
+            <img src="/Migracode Logo 1.png" alt="Migracode Logo" />
+          </div>
+          <Link to="/" className="link-newtask">
+            Task Manager
+          </Link>
+          <br />
+          <Link to="/new-task">Add Task</Link>
+          <br />
+          <Link to="*">Project View</Link>
+        </div>
+        <div>
+          <h1>Task Manager</h1>
+          <Routes>
+            <Route path="/" element={<TaskList tasks={taskInform} />} />
 
-      <TaskList tasks={taskInform} />
-      <NewTask submit={newTaskList} />
+            <Route
+              path="/new-task"
+              element={<NewTask handleNewTask={newTaskList} />}
+            />
+          </Routes>
+        </div>
+      </div>
     </>
   );
 }

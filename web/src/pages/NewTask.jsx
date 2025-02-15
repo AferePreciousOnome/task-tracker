@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './NewTask.module.css';
-function NewTask({ submit }) {
+function NewTask({ handleNewTask }) {
   const [formTitle, setFormTitle] = useState('');
   const [formProject, setFormProject] = useState('');
   const [formAssignee, setFormAssignee] = useState('');
@@ -11,7 +11,7 @@ function NewTask({ submit }) {
     if (!formTitle.trim() || !formProject.trim() || !formAssignee.trim()) {
       return;
     }
-    submit(event, formTitle, formProject, formAssignee);
+    handleNewTask(event, formTitle, formProject, formAssignee);
 
     setFormAssignee('');
     setFormProject('');
@@ -54,20 +54,5 @@ function NewTask({ submit }) {
 export default NewTask;
 
 NewTask.propTypes = {
-  submit: PropTypes.func.isRequired,
+  handleNewTask: PropTypes.func.isRequired,
 };
-
-{
-  /* <form onSubmit={handleSubmit} className="new-item-form">
-      <div className="form-row">
-        <label htmlFor="item">New Item</label>
-        <input
-          value={newItem}
-          onChange={(e) => setNewItem(e.target.value)}
-          type="text"
-          id="item"
-        />
-      </div>
-      <button className="btn">Add</button>
-    </form> */
-}

@@ -9,15 +9,15 @@ Please make sure to add styles using CSS Modules.
 Add the necessary props to the component.
 */
 
-function TaskItem({ ProjectName, Priority, DueDate, Assignee, Project }) {
+function TaskItem({ projectName, priority, dueDate, assignee, project }) {
   function colorBox() {
-    if (Priority === 'low') {
+    if (priority === 'low') {
       return `${styles.btn} ${styles.btnGreen}`;
     }
-    if (Priority === 'medium') {
+    if (priority === 'medium') {
       return `${styles.btn} ${styles.btnYellow}`;
     }
-    if (Priority === 'high') {
+    if (priority === 'high') {
       return `${styles.btn} ${styles.btnRed}`;
     }
   }
@@ -25,16 +25,16 @@ function TaskItem({ ProjectName, Priority, DueDate, Assignee, Project }) {
   return (
     <>
       <div className={styles.mainContainer}>
-        <h4>{ProjectName}</h4>
+        <h4>{projectName}</h4>
         <div>
-          <button className={colorBox()}>{Priority}</button>
+          <button className={colorBox()}>{priority}</button>
         </div>
         <div>
           <p className={styles.dueDate}>
             <span>
               <MyIconSunset />
             </span>
-            {DueDate}
+            {dueDate}
           </p>
         </div>
 
@@ -42,21 +42,21 @@ function TaskItem({ ProjectName, Priority, DueDate, Assignee, Project }) {
           <span>
             <StudentIcon />
           </span>
-          {Assignee}
+          {assignee}
         </p>
 
-        <p className={styles.projectItem}>{Project}</p>
+        <p className={styles.projectItem}>{project}</p>
       </div>
     </>
   );
 }
 
 TaskItem.propTypes = {
-  ProjectName: PropTypes.string.isRequired,
-  Priority: PropTypes.oneOf(['low', 'medium', 'high']).isRequired,
-  DueDate: PropTypes.string.isRequired,
-  Assignee: PropTypes.string.isRequired,
-  Project: PropTypes.string.isRequired,
+  projectName: PropTypes.string.isRequired,
+  priority: PropTypes.oneOf(['low', 'medium', 'high']).isRequired,
+  dueDate: PropTypes.string.isRequired,
+  assignee: PropTypes.string.isRequired,
+  project: PropTypes.string.isRequired,
 };
 
 export default TaskItem;
