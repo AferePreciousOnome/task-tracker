@@ -1,0 +1,35 @@
+.Container {
+  display: flex;
+  height: 100vh;
+  background-color: #f8f9fa;
+  gap: 30px;
+}
+
+.link-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-container img {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.link-container a {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  display: block;
+}
+
+.link-container a:hover {
+  color: #007bff;
+}
