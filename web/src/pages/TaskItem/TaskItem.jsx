@@ -1,5 +1,5 @@
-import MyIconSunset from './MyIconSunset';
-import StudentIcon from './StudentIcon';
+import MyIconSunset from '../MyIconSunset';
+import StudentIcon from '../StudentIcon';
 import styles from './TaskItem.module.css';
 import PropTypes from 'prop-types';
 

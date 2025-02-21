@@ -1,7 +1,8 @@
-import { Routes, Route, Link } from 'react-router';
+import { Routes, Route } from 'react-router';
 import { useState } from 'react';
-import TaskList from './components/domains/task/TaskList/TaskList';
+import TaskList from './pages/TaskList/TaskList';
 import NewTask from './pages/NewTask';
+import NavBar from './components/NavBar';
 import './App.css';
 function App() {
   const [taskInform, setTaskInform] = useState([
@@ -59,13 +60,7 @@ function App() {
           <div>
             <img src="/Migracode Logo 1.png" alt="Migracode Logo" />
           </div>
-          <Link to="/" className="link-newtask">
-            Task Manager
-          </Link>
-          <br />
-          <Link to="/new-task">Add Task</Link>
-          <br />
-          <Link to="*">Project View</Link>
+          <NavBar />
         </div>
         <div>
           <h1>Task Manager</h1>
