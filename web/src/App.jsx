@@ -1,7 +1,8 @@
-import { Routes, Route } from 'react-router';
-import useFetch from './hooks/useFetch';
-import TaskList from './pages/TaskList/TaskList';
+import { Routes, Route, Link } from 'react-router';
+
+import TaskList from './components/domains/task/TaskList/TaskList';
 import NewTask from './pages/NewTask';
+
 import './App.css';
 import NavigationLayout from './layout/NavigationLayout';
 console.log('useFetch:', useFetch);
