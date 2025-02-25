@@ -5,22 +5,35 @@ function NewTask({ handleNewTask }) {
   const [formTitle, setFormTitle] = useState('');
   const [formProject, setFormProject] = useState('');
   const [formAssignee, setFormAssignee] = useState('');
+  const [formPriority, setFormPriority] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!formTitle.trim() || !formProject.trim() || !formAssignee.trim()) {
+    if (
+      !formTitle.trim() ||
+      !formProject.trim() ||
+      !formAssignee.trim() ||
+      !formPriority
+    ) {
       return;
     }
-    handleNewTask(event, formTitle, formProject, formAssignee);
+    handleNewTask({
+      projectName: formTitle,
+      priority: formPriority,
+      dueDate: new Date().toLocaleDateString(),
+      assignee: formAssignee,
+      project: formProject,
+    });
 
     setFormAssignee('');
     setFormProject('');
     setFormTitle('');
+    setFormPriority('');
   }
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={styles.titleContainer}>
           <label htmlFor="item">Title</label>
           <input
@@ -43,8 +56,15 @@ function NewTask({ handleNewTask }) {
             id="item3"
             onChange={(e) => setFormAssignee(e.target.value)}
           />
+          <label htmlFor="item4">Priority</label>
+          <input
+            value={formPriority}
+            type="text"
+            id="item4"
+            onChange={(e) => setFormPriority(e.target.value)}
+          />
         </div>
-        <button className={styles.btn} onClick={handleSubmit}>
+        <button className={styles.btn} type="submit">
           Add Task
         </button>
       </form>

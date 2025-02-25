@@ -1,58 +1,13 @@
 import { Routes, Route } from 'react-router';
-import { useState } from 'react';
+import useFetch from './hooks/useFetch';
 import TaskList from './pages/TaskList/TaskList';
 import NewTask from './pages/NewTask';
 import './App.css';
 import NavigationLayout from './layout/NavigationLayout';
+console.log('useFetch:', useFetch);
 function App() {
-  const [taskInform, setTaskInform] = useState([
-    {
-      id: 1,
-      projectName: 'Re-work UI/UX',
-      priority: 'low',
-      dueDate: '12/05/2025',
-      assignee: 'Said & Rachel',
-      project: 'Time App',
-    },
-    {
-      id: 2,
-      projectName: 'Dark mode toggle',
-      priority: 'high',
-      dueDate: '09/03/2025',
-      assignee: 'Umair & Precious',
-      project: 'Asa Dark-mode Feature',
-    },
-    {
-      id: 3,
-      projectName: 'Accessibility check',
-      priority: 'medium',
-      dueDate: '15/04/2025',
-      assignee: 'Michel & Ricardo',
-      project: 'Timer App',
-    },
-    {
-      id: 4,
-      projectName: 'Notification Integration',
-      priority: 'high',
-      dueDate: '11/03/2025',
-      assignee: 'Ebetsam & Deborah',
-      project: 'Timer App',
-    },
-  ]);
-  function newTaskList(event, projectName, project, assignee) {
-    event.preventDefault();
-    setTaskInform((prevtask) => [
-      ...prevtask,
-      {
-        id: 5,
-        projectName,
-        dueDate: new Date().toLocaleDateString(),
-        project,
-        assignee,
-        priority: 'high',
-      },
-    ]);
-  }
+  const { taskInform, newTaskList } = useFetch('/api/tasks');
+
   return (
     <>
       <div className="Container">

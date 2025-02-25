@@ -4,8 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 const allTasks = new Map();
 
 allTasks.set(uuidv4(), {
-  name: 'Task 1',
-  status: 'OPEN',
+  id: 1,
+  projectName: 'Re-work UI/UX',
+  priority: 'low',
+  dueDate: '12/05/2025',
+  assignee: 'Said & Rachel',
+  project: 'Time App',
 });
 
 export const handlers = [
@@ -20,7 +24,12 @@ export const handlers = [
 
     console.log('task', task);
 
-    if (!task.name || !task.status) {
+    if (
+      !task.projectName ||
+      !task.priority ||
+      !task.assignee ||
+      !task.project
+    ) {
       return new HttpResponse(null, {
         status: 400,
         body: JSON.stringify({ message: 'Please provide a valid task' }),

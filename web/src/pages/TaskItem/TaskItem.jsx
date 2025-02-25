@@ -20,6 +20,7 @@ function TaskItem({ projectName, priority, dueDate, assignee, project }) {
     if (priority === 'high') {
       return `${styles.btn} ${styles.btnRed}`;
     }
+    return `${styles.btn}`;
   }
 
   return (

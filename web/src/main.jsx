@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
 import { DataFetchingDemoPage } from './pages/DataFetchingDemoPage.jsx';
-import { BrowserRouter } from 'react-router';
+import { BrowserRouter, Route, Routes } from 'react-router';
 
 async function enableMocking() {
   if (import.meta.env === 'development') {
@@ -24,8 +24,7 @@ enableMocking().then(() => {
     <StrictMode>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/temppage" element={<TempPage />} />
+          <Route path="*" element={<App />} />
           <Route path="/datafetching" element={<DataFetchingDemoPage />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
