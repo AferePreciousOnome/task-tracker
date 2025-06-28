@@ -1,64 +1,36 @@
-// import TaskItem from './components/domains/task/TaskItem/TaskItem';
-import NewTask from './components/domains/task/TaskItem/NewTask';
-import TaskList from './components/domains/task/TaskList/TaskList';
-import { useState } from 'react';
+import { Routes, Route } from 'react-router';
+import useFetch from './hooks/useFetch';
 
+import TaskList from './pages/TaskList/TaskList';
+import NewTask from './pages/NewTask';
+
+import './App.css';
+import NavigationLayout from './layout/NavigationLayout';
+console.log('useFetch:', useFetch);
 function App() {
-  const [taskInform, setTaskInform] = useState([
-    {
-      id: 1,
-      ProjectName: 'Re-work UI/UX',
-      Priority: 'low',
-      DueDate: '12/05/2025',
-      Assignee: 'Said & Rachel',
-      Project: 'Time App',
-    },
-    {
-      id: 2,
-      ProjectName: 'Dark mode toggle',
-      Priority: 'high',
-      DueDate: '09/03/2025',
-      Assignee: 'Umair & Precious',
-      Project: 'Asa Dark-mode Feature',
-    },
-    {
-      id: 3,
-      ProjectName: 'Accessibility check',
-      Priority: 'medium',
-      DueDate: '15/04/2025',
-      Assignee: 'Michel & Ricardo',
-      Project: 'Timer App',
-    },
-    {
-      id: 4,
-      ProjectName: 'Notification Integration',
-      Priority: 'high',
-      DueDate: '11/03/2025',
-      Assignee: 'Ebetsam & Deborah',
-      Project: 'Timer App',
-    },
-  ]);
-  function newTaskList(event, ProjectName, Project, Assignee) {
-    event.preventDefault();
-    setTaskInform((prevtask) => [
-      ...prevtask,
-      {
-        id: 5,
-        ProjectName,
-        DueDate: new Date().toLocaleDateString(),
-        Project,
-        Assignee,
-        Priority: 'high',
-      },
-    ]);
-  }
+  const { taskInform, newTaskList } = useFetch('/api/tasks');
+
   return (
     <>
-      <h1>Task Manager</h1>
-      {/* <TaskItem /> */}
+      <div className="Container">
+        <div className="link-container">
+          <div>
+            <img src="/Migracode Logo 1.png" alt="Migracode Logo" />
+          </div>
+          <NavigationLayout />
+        </div>
+        <div>
+          <h1>Task Manager</h1>
+          <Routes>
+            <Route path="/" element={<TaskList tasks={taskInform} />} />
 
-      <TaskList tasks={taskInform} />
-      <NewTask submit={newTaskList} />
+            <Route
+              path="/new-task"
+              element={<NewTask handleNewTask={newTaskList} />}
+            />
+          </Routes>
+        </div>
+      </div>
     </>
   );
 }

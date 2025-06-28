@@ -7,11 +7,11 @@ function TaskList({ tasks }) {
       {tasks.map((task) => (
         <TaskItem
           key={task.id}
-          ProjectName={task.ProjectName}
-          Priority={task.Priority}
-          DueDate={task.DueDate}
-          Assignee={task.Assignee}
-          Project={task.Project}
+          projectName={task.projectName}
+          priority={task.priority}
+          dueDate={task.dueDate}
+          assignee={task.assignee}
+          project={task.project}
         />
       ))}
     </div>
@@ -23,11 +23,11 @@ TaskList.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      ProjectName: PropTypes.string.isRequired,
-      Priority: PropTypes.string.isRequired,
-      DueDate: PropTypes.string.isRequired,
-      Assignee: PropTypes.string.isRequired,
-      Project: PropTypes.string.isRequired,
+      projectName: PropTypes.string.isRequired,
+      priority: PropTypes.string.isRequired,
+      dueDate: PropTypes.string.isRequired,
+      assignee: PropTypes.string.isRequired,
+      project: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };

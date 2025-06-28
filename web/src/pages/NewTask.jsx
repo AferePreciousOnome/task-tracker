@@ -1,26 +1,39 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './NewTask.module.css';
-function NewTask({ submit }) {
+function NewTask({ handleNewTask }) {
   const [formTitle, setFormTitle] = useState('');
   const [formProject, setFormProject] = useState('');
   const [formAssignee, setFormAssignee] = useState('');
+  const [formPriority, setFormPriority] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!formTitle.trim() || !formProject.trim() || !formAssignee.trim()) {
+    if (
+      !formTitle.trim() ||
+      !formProject.trim() ||
+      !formAssignee.trim() ||
+      !formPriority
+    ) {
       return;
     }
-    submit(event, formTitle, formProject, formAssignee);
+    handleNewTask({
+      projectName: formTitle,
+      priority: formPriority,
+      dueDate: new Date().toLocaleDateString(),
+      assignee: formAssignee,
+      project: formProject,
+    });
 
     setFormAssignee('');
     setFormProject('');
     setFormTitle('');
+    setFormPriority('');
   }
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={styles.titleContainer}>
           <label htmlFor="item">Title</label>
           <input
@@ -43,8 +56,15 @@ function NewTask({ submit }) {
             id="item3"
             onChange={(e) => setFormAssignee(e.target.value)}
           />
+          <label htmlFor="item4">Priority</label>
+          <input
+            value={formPriority}
+            type="text"
+            id="item4"
+            onChange={(e) => setFormPriority(e.target.value)}
+          />
         </div>
-        <button className={styles.btn} onClick={handleSubmit}>
+        <button className={styles.btn} type="submit">
           Add Task
         </button>
       </form>
@@ -54,20 +74,5 @@ function NewTask({ submit }) {
 export default NewTask;
 
 NewTask.propTypes = {
-  submit: PropTypes.func.isRequired,
+  handleNewTask: PropTypes.func.isRequired,
 };
-
-{
-  /* <form onSubmit={handleSubmit} className="new-item-form">
-      <div className="form-row">
-        <label htmlFor="item">New Item</label>
-        <input
-          value={newItem}
-          onChange={(e) => setNewItem(e.target.value)}
-          type="text"
-          id="item"
-        />
-      </div>
-      <button className="btn">Add</button>
-    </form> */
-}
